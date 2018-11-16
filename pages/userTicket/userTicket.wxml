@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="w710">
+  <view class="store_discount w710">
+    <view class="discount_box">
+      <view class="discount_cont flex">
+          <view class="discount_left">
+              <image src="/images/discount_bg1.png"></image>
+              <view class="discount_sort font22 color1">抵扣券</view>
+          </view>
+          <view class="discount_center font28">
+              <view class="color">¥<text>100</text>满500减100</view>
+              <view class="color6">仅限本店使用仅限本店使用</view>
+              <view class="color6">2018.9.20 -2018-9.22</view>
+          </view>
+          <view class="line"></view>
+          <view class="discount_right flex">
+              <view class="get_discout font30 color1 bg">去使用</view>
+          </view>
+      </view>
+    </view>
+    <view class="font30 color3" style="height:86rpx;line-height:86rpx;">
+      <form bindsubmit="submit" report-submit="true">
+        <button  form-type="submit" class="submit_info color" style="width:108rpx;height:48rpx;line-height:48rpx;">退款</button>
+      </form>
+    </view>
+  </view>
+   <view class="store_discount w710">
+    <view class="discount_box">
+      <view class="discount_cont flex">
+          <view class="discount_left">
+              <image src="/images/discount_bg1.png"></image>
+              <view class="discount_sort font22 color1">抵扣券</view>
+          </view>
+          <view class="discount_center font28">
+              <view class="color">¥<text>100</text>满500减100</view>
+              <view class="color6">仅限本店使用仅限本店使用</view>
+              <view class="color6">2018.9.20 -2018-9.22</view>
+          </view>
+          <view class="line"></view>
+          <view class="discount_right flex">
+              <view class="get_discout font30 color1 bg">去使用</view>
+          </view>
+      </view>
+    </view>
+    <view class="font30 color3" style="height:86rpx;line-height:86rpx;">
+      <form bindsubmit="submit" report-submit="true">
+        <button  form-type="submit" class="submit_info color" style="width:108rpx;height:48rpx;line-height:48rpx;">退款</button>
+      </form>
+    </view>
+  </view>
+</view>

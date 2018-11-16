@@ -1,0 +1,85 @@
+
+.pay_number{
+	width:100%;
+	height:60rpx;
+	margin:40rpx 0;
+}
+.pay_number input{
+	width:82%;
+	height:60rpx;
+	border:solid 1px #c4010c;
+	border-radius:10rpx;
+	line-height:60rpx;
+	padding:3%;
+}
+.pay_number>view{
+	width:12%;
+	text-align: center;
+}
+.tickit{
+	width:100%;
+}
+.tickit_left{
+	width:85%;
+}
+.tickit_right{
+	width:15%;
+	text-align: right;
+}
+/***************券*************/
+.discount_box{
+	width:100%;
+	height:160rpx;
+	border-radius: 14rpx;
+	background: #fffbf4;
+	margin-top: 20rpx;
+}
+.discount_left{
+	width:13%;
+	height:100%;
+	position:relative;
+}
+.discount_sort{
+	width:110rpx;
+	height: 110rpx;
+	position: absolute;
+	left:0rpx;
+	top:0;
+	transform: rotate(-45deg);
+	text-align: center;
+}
+.discount_center{
+	width:62.5%;
+}
+.discount_right{
+	width:24.5%;
+}
+.discount_cont{
+	width:100%;
+	height:100%;
+}
+.discount_center text{
+	font-size: 50rpx;
+}
+.get_discout{
+	width:122rpx;
+	height:54rpx;
+	border-radius: 16rpx;
+	background: #fe9900;
+	text-align:center;
+	border: none;
+	line-height: 54rpx;
+}
+.discount_left image{
+	width:92rpx;
+	height: 92rpx;
+}
+.tickit_right image{
+	width:50rpx;
+	height:50rpx;
+}
+.submit_info{
+	width:450rpx;
+	background: #fe9900;
+	margin:100rpx auto 0 auto;
+}

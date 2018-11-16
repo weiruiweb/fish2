@@ -1,0 +1,57 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"; 
+page{
+	background:#f2f2f2;
+}
+.user_banner{
+	width:100%;
+	height:444rpx;
+	position:relative;
+}
+.user_banner image{
+	width:100%;
+	height:444rpx;
+}
+.user_box{
+	position:absolute;
+	left:0;
+	top:0;
+	height:444rpx;
+	display:flex;
+}
+.banner_left{
+	width:33%;
+	height:100%;
+
+}
+.user_img{
+	width:150rpx;
+	height:150rpx;
+	border-radius:50%;
+	overflow:hidden;
+	margin:0px auto 30rpx auto;
+	border:solid 4rpx #c70e18;
+}
+.user_left{
+	align-items:center;
+}
+.user_left image{
+	width:30rpx;
+	height:32rpx;
+	margin-right:12rpx;
+}
+.user_infor{
+	height:96rpx;
+	line-height:96rpx;
+	background:#fff;
+	border-bottom:solid 1px #dcdcdc;
+	align-items:center;
+	}
+.next_page image{
+	width:11rpx;
+	height:20rpx;
+}
+.user_all{
+	margin-top:12rpx;
+}

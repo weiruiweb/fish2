@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/pay/pay",
+    "pages/user/user",
+    "pages/userRecord/userRecord",
+    "pages/userDiscount/userDiscount",
+    "pages/userTicket/userTicket",
+    "pages/userContact/userContact",
+    "pages/detail/detail"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#c4010c",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "#fff"
+  }
+}
