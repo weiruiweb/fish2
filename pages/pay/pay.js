@@ -17,12 +17,10 @@ Page({
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
-  intoPathRedi(e){
+  intoPathRedirect(e){
     const self = this;
-    wx.navigateBack({
-      delta:1
-    })
-  },
+    api.pathTo(api.getDataSet(e,'path'),'redi');
+  }, 
 })
 
   
