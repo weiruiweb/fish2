@@ -8,7 +8,7 @@
                   <open-data type="userAvatarUrl"></open-data>
                 </view>
             </view>
-            <view class="font32 color1" style="text-align: center;">面桃子</view>
+            <view class="font32 color1" style="text-align: center;"><open-data  type="userNickName" ></open-data></view>
         </view>
        
             

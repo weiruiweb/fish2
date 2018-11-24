@@ -6,13 +6,13 @@ var api = new Api();
 App({
   onLaunch: function () {
       // 展示本地存储能力
-  var token = new Token();
-  token.verify();
+/*  var token = new Token();
+  token.verify();*/
 
 },
 
   globalData: {
-    thirdapp_id:60,
+    thirdapp_id:18,
     address_id:'',
     coupon:{},
     paginate: {

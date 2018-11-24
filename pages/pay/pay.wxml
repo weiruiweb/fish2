@@ -1,57 +1,62 @@
 <!--index1.wxml-->
 <view class="w710">
     <view class="pay_number flex">
-        <input class="font28 color6"></input>
+        <input class="font28 color6" bindblur="changeBind" data-key="price" value="{{web_submitData.price}}"></input>
         <view class="font32 color6">元</view>
     </view>
     <view class="font30 color6">添加抵用券</view>
-    <view class="tickit flex">
-        <view class="tickit_left">
-            <view class="discount_box">
-              <view class="discount_cont flex">
-                  <view class="discount_left">
-                      <image src="/images/discount_bg1.png"></image>
-                      <view class="discount_sort font22 color1">优惠卷</view>
-                  </view>
-                  <view class="discount_center font28">
-                      <view class="color">¥<text>100</text>满500减100</view>
-                      <view class="color6">仅限本店使用仅限本店使用</view>
+    <block wx:for="{{web_mainData}}" wx:key="id">
+      <view class="tickit flex">
+          <view class="tickit_left">
+              <view class="discount_box">
+                <view class="discount_cont flex">
+                    <view class="discount_left">
+                        <image src="/images/discount_bg1.png"></image>
+                        <view class="discount_sort font22 color1">抵用券</view>
+                    </view>
+                    <view class="discount_center font28">
+                      <view class="color">¥<text>{{item.price}}</text>满{{item.balance}}减{{item.balance-item.price}}</view>
+                      <view class="color6">仅限本店使用</view>
                       <view class="color6">2018.9.20 -2018-9.22</view>
-                  </view>
-                  <view class="discount_right">
-                      <view class="get_discout font30 color1">可使用</view>
-                  </view>
+                    </view>
+                    <view class="discount_right">
+                        <view class="get_discout font30 color1">可使用</view>
+                    </view>
+                </view>
               </view>
-            </view>
-        </view>
-        <view class="tickit_right">
-            <image src="/images/select.jpg"></image>
-        </view>
-    </view>
-     <view class="font30 color6">添加优惠券</view>
-    <view class="tickit flex">
-        <view class="tickit_left">
-            <view class="discount_box">
-              <view class="discount_cont flex">
-                  <view class="discount_left">
-                      <image src="/images/discount_bg2.png"></image>
-                      <view class="discount_sort font22 color1">优惠卷</view>
-                  </view>
-                  <view class="discount_center font28">
-                      <view class="color">¥<text>100</text>满500减100</view>
-                      <view class="color6">仅限本店使用仅限本店使用</view>
-                      <view class="color6">2018.9.20 -2018-9.22</view>
-                  </view>
-                  <view class="discount_right">
-                      <view class="get_discout font30 color1" style="background:#999;">不使用</view>
-                  </view>
+          </view>
+          <view class="tickit_right">
+              <image src="/images/select.jpg"></image>
+          </view>
+      </view>
+    </block>
+
+    <view class="font30 color6">添加优惠券</view>
+    <block wx:for="{{web_couponData}}" wx:key="id">
+      <view class="tickit flex">
+          <view class="tickit_left">
+              <view class="discount_box">
+                <view class="discount_cont flex">
+                    <view class="discount_left">
+                        <image src="/images/discount_bg2.png"></image>
+                        <view class="discount_sort font22 color1">优惠卷</view>
+                    </view>
+                    <view class="discount_center font28">
+                        <view class="color">¥<text>{{item.discount}}</text>全场通用</view>
+                        <view class="color6">仅限本店使用</view>
+                        <view class="color6">2018.9.20 -2018-9.22</view>
+                    </view>
+                    <view class="discount_right">
+                        <view class="get_discout font30 color1" style="background:#999;">不使用</view>
+                    </view>
+                </view>
               </view>
-            </view>
-        </view>
-        <view class="tickit_right">
-            <image src="/images/select.jpg"></image>
-        </view>
-    </view>
+          </view>
+          <view class="tickit_right">
+              <image src="/images/select.jpg"></image>
+          </view>
+      </view>
+    </block>
 </view>
 <form  bindsubmit="submit">
     <button class="submit_info" form-type="submit">立即支付</button>

@@ -194,8 +194,8 @@ swiper{
 	width:264rpx;
 	overflow:hidden;
 	margin:0 auto;
-	height:28rpx;
-	line-height:28rpx;
+	height:30rpx;
+	line-height:30rpx;
 }
 .mall_tlt image{
 	width:264rpx;

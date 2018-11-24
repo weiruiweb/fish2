@@ -1,15 +1,12 @@
 <!--index.wxml-->
 <view class="w710 contact_deatil bg1">
-  <image src="/images/banner.jpg"></image>
-  <view class="font24 color6">
-    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
-    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
-  </view>
+  <image src="{{web_mainData.mainImg[0].url}}"></image>
+ 
   <view class="font30 color3" style="height:106rpx;line-height:106rpx;">
-     麻辣味锅底
+     {{web_mainData.title}}
   </view>
   <view class="font28 color" style="height:64rpx;">
-     ¥899
+     ¥{{web_mainData.price}}
   </view>
 </view>
 <view class="w710 contact_deatil  bg1" style="margin-top:20rpx;">
@@ -18,7 +15,9 @@
   </view>
   <image src="/images/banner.jpg"></image>
   <view class="font24 color6">
-    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
-    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内
+    <view class="content ql-editor" >
+      <import src="../../wxParse/wxParse.wxml"/>
+      <template is="wxParse" data="{{wxParseData:web_noticeData.content}}"/>
+    </view> 
   </view>
 </view>
