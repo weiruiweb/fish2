@@ -16,22 +16,19 @@ class Token {
             this.getUserInfo();
         };
     }
-
+    
     getProjectToken(callback,postData) { 
-
         if((postData&&postData.refreshToken)||!wx.getStorageSync('token')){
             var params = {
                 token_name:'token',
                 info_name:'info',
-                thirdapp_id:18
+                thirdapp_id:2
             };
             this.getUserInfo(params,callback);
         }else{
             return wx.getStorageSync('token');
         }
-    }    
-
-
+    }
 
     getUserInfo(params,callback){
         var self = this;
@@ -64,10 +61,8 @@ class Token {
                 success: function(res) {
                     wxUserInfo = res.userInfo;
                     self.getTokenFromServer(wxUserInfo,params,callback)                  
-                    
                 }
             });
-
         };
         console.log(wxUserInfo)
     }
@@ -97,7 +92,7 @@ class Token {
                 };
                 console.log(postData)
                 wx.request({
-                    url: 'https://api.solelycloud.com/api/public/index.php/api/v1/Base/ProgrameToken/get',
+                    url: 'http://shunshuiyuguan.gz01.bdysite.com/api/public/index.php/api/v1/Base/ProgrameToken/get',
                     method:'POST',
                     data:postData,
                     success:function(res){
@@ -136,7 +131,7 @@ class Token {
                 password:wx.getStorageSync('login').password,
             }
             wx.request({
-                url: 'https://api.solelycloud.com/api/public/index.php/api/v1/Func/Common/loginByUp',
+                url: 'http://shunshuiyuguan.gz01.bdysite.com/api/public/index.php/api/v1/Func/Common/loginByUp',
                 method:'POST',
                 data:postData,
                 success:function(res){

@@ -11,14 +11,16 @@ Page({
     searchItem:{
       
     },
-    buttonClicked:false,
+    isFirstLoadAllStandard:['getOrderData'],
     isLoadAll:false,
-    complete_api:[]
+    buttonCanClick:false,
+    complete_api:[],
   },
   
   onLoad() {
-    const self = this;
     wx.showLoading();
+    const self = this;
+    wx.removeStorageSync('checkLoadAll');
     self.setData({
       web_num:self.data.num
     });
@@ -33,7 +35,7 @@ Page({
     }
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
-    postData.token = wx.getStorageSync('token');
+    postData.tokenFuncName='getProjectToken',
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem.type = 4;
@@ -49,24 +51,19 @@ Page({
         api.showToast('没有更多了','none');
       }
       self.data.complete_api.push('getOrderData')
-      self.setData({
-        buttonClicked:false,
-      })
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getOrderData',self);
       self.setData({
         web_mainData:self.data.mainData,
       });     
-      self.checkLoadComplete()
     };
     api.orderGet(postData,callback);
   },
 
   menuClick: function (e) {
     const self = this;
-    self.setData({
-      buttonClicked:true,
-    })
     const num = e.currentTarget.dataset.num;
     self.changeSearch(num);
+    api.buttonCanClick(self,true)
   },
 
 
@@ -76,7 +73,6 @@ Page({
       web_num: num
     });
     var endTime = Date.parse(new Date());
-    console.log(endTime)
     self.data.searchItem = {};
     if(num=='0'){
       
@@ -101,19 +97,6 @@ Page({
       delta:1
     })
   },
-
-  
-
-
-
-  checkLoadComplete(){
-    const self = this;
-    var complete = api.checkArrayEqual(self.data.complete_api,['getOrderData']);
-    if(complete){
-      wx.hideLoading();
-    };
-  },
-
   onReachBottom: function () {
     const self = this;
     if(!self.data.isLoadAll){

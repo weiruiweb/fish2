@@ -83,7 +83,7 @@ page{
 	justify-content:center;
 	border-top:solid 1px #dbdbdb;
 	align-items:center;
-	box-shadow:5rpx 0 15rpx #84ddf3;
+	box-shadow:5rpx 0 15rpx #fbaaaa;
 }
 .nav_img image{
 	width:46rpx;

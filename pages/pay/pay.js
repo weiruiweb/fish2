@@ -10,17 +10,19 @@ Page({
     couponData:[],
     submitData:{
       price:''
-    }
+    },
+    isFirstLoadAllStandard:['getMainData','getCouponData'],
+    isLoadAll:false,
+    buttonCanClick:false,
+
   },
   //事件处理函数
   onLoad(){
     const self = this;
+    wx.showLoading();
     self.getMainData();
     self.getCouponData()
   },
-
-
-
   getMainData(){
     const self = this;
     const postData = {
@@ -34,6 +36,7 @@ Page({
       if(res.info.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.info.data)
       }
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
         web_mainData:self.data.mainData
       })
@@ -53,13 +56,13 @@ Page({
       if(res.info.data.length>0){
         self.data.couponData.push.apply(self.data.couponData,res.info.data)
       }
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getCouponData',self);
       self.setData({
         web_couponData:self.data.couponData
       })
     }
     api.orderGet(postData,callback)
   },
-
   changeBind(e){
     const self = this;
     api.fillChange(e,self,'submitData');
@@ -68,15 +71,11 @@ Page({
       web_submitData:self.data.submitData,
     });  
   },
-
-
-
   pay(){
     const self = this;
-    wx.showLoading();
+    api.buttonCanClick(self);
     const postData = {
       tokenFuncName:'getProjectToken',
-
     };
     postData.coupon = {
       coupon_no:self.data.couponNo,
@@ -98,18 +97,15 @@ Page({
         };
       }else{
         api.showToast('支付失败','none')
-      }  
+      } 
+      api.buttonCanClick(self,true) 
     }
     api.directPay(postData,callback);
   },
-
-
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
-
-
   intoPathRedirect(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'redi');

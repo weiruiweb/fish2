@@ -7,7 +7,7 @@ const token = new Token();
 
 Page({
   data: {
-  
+    mainData:[],
   },
   //事件处理函数
  
@@ -34,7 +34,8 @@ Page({
    	  	web_mainData:self.data.mainData
    	  })
    	};
-    api.productGet(postData,callback);
+    console.log(111,self.data.mainData);
+    api.articleGet(postData,callback);
   },
  
 })

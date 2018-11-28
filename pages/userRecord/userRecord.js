@@ -15,16 +15,17 @@ Page({
       type:1,
       status:1
     },
-    complete_api:[]
+    complete_api:[],
+    isFirstLoadAllStandard:['getMainData','getUserInfoData'],
+    isLoadAll:false,
+    buttonCanClick:false,
   },
 
   
-  onLoad(){
-    const self = this;
+  onLoad(){ 
     wx.showLoading();
-    self.setData({
-     fonts:app.globalData.font
-    });
+    const self = this;
+    wx.removeStorageSync('checkLoadAll');
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getUserInfoData()
@@ -47,8 +48,6 @@ Page({
     self.getMainData(true);
 
   },
-
-
   getUserInfoData(){
     const self = this;
     const postData = {};
@@ -58,16 +57,13 @@ Page({
         self.data.userData = res;
         self.data.complete_api.push('getUserInfoData')
       }
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getUserInfoData',self);
       self.setData({
         web_userData:self.data.userData,
       });
-      self.checkLoadComplete();
     };
     api.userInfoGet(postData,callback);   
   },
-
-  
-
   getMainData(isNew){
     const self = this;
     if(isNew){
@@ -88,6 +84,7 @@ Page({
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
       };
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
         web_mainData:self.data.mainData,
       });
@@ -95,7 +92,6 @@ Page({
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
       },300);
-      self.checkLoadComplete();
     };
     api.flowLogGet(postData,callback);
   },
@@ -125,16 +121,6 @@ Page({
     };
     self.getMainData(true);   
   },
-
-  checkLoadComplete(){
-    const self = this;
-    var complete = api.checkArrayEqual(self.data.complete_api,['getMainData','getUserInfoData']);
-    if(complete){
-      wx.hideLoading();
-    };
-  },
-
-
 
 })
 

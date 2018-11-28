@@ -1,0 +1,2 @@
+<!--map.wxml-->
+    <map id="myMap" show-location  longitude="109.038907" latitude="34.320487" style="width: 100%; height:100vh;"/>

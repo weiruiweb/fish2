@@ -7,13 +7,16 @@ const token = new Token();
 
 Page({
   data: {
-   
+    isFirstLoadAllStandard:['getNoticeData'],
+    isLoadAll:false,
+    buttonCanClick:false,
   },
   //事件处理函数
  
   onLoad(options) {
-    const self = this;
     wx.showLoading();
+    const self = this;
+    wx.removeStorageSync('checkLoadAll');
     self.getNoticeData()
 
   },
@@ -40,7 +43,7 @@ Page({
         self.data.noticeData = res.info.data[0];
         self.data.noticeData.content = api.wxParseReturn(res.info.data[0].content).nodes;
       };
-      wx.hideLoading();
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getNoticeData',self);
       self.setData({
         web_noticeData:self.data.noticeData,
 

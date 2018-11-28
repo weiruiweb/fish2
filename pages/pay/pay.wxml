@@ -4,8 +4,8 @@
         <input class="font28 color6" bindblur="changeBind" data-key="price" value="{{web_submitData.price}}"></input>
         <view class="font32 color6">元</view>
     </view>
-    <view class="font30 color6">添加抵用券</view>
     <block wx:for="{{web_mainData}}" wx:key="id">
+      <view class="font30 color6">添加抵用券</view>
       <view class="tickit flex">
           <view class="tickit_left">
               <view class="discount_box">
@@ -30,9 +30,8 @@
           </view>
       </view>
     </block>
-
-    <view class="font30 color6">添加优惠券</view>
     <block wx:for="{{web_couponData}}" wx:key="id">
+      <view class="font30 color6">添加优惠券</view>
       <view class="tickit flex">
           <view class="tickit_left">
               <view class="discount_box">
@@ -58,10 +57,10 @@
       </view>
     </block>
 </view>
-<form  bindsubmit="submit">
+<form  bindsubmit="{{web_buttonCanClick?'pay':''}}">
     <button class="submit_info" form-type="submit">立即支付</button>
 </form>
-<view class="font22 color6" style="text-align:center;">技术支持：西安纯粹云科技有限公司</view>
+<view class="font22 color6" style="text-align:center;position:fixed;bottom:130rpx;left:0;width:100%;">技术支持：西安纯粹云科技有限公司</view>
 <view style="width:100%;height:120rpx;"></view>
 <view class="navbar">
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">

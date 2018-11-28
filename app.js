@@ -12,7 +12,7 @@ App({
 },
 
   globalData: {
-    thirdapp_id:18,
+    thirdapp_id:2,
     address_id:'',
     coupon:{},
     paginate: {
@@ -23,8 +23,6 @@ App({
     },
     categoryIndex:'',
     userInfo: null,
-     font:[{font:'font-size:20rpx'},{font:'font-size:22rpx'},{font:'font-size:24rpx'},{font:'font-size:28rpx'},{font:'font-size:30rpx'},{font:'font-size:32rpx'}],
-
   },
 
 

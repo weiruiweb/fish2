@@ -7,7 +7,8 @@
     "pages/userDiscount/userDiscount",
     "pages/userTicket/userTicket",
     "pages/userContact/userContact",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/map/map"
 
   ],
   "window": {

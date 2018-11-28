@@ -5,14 +5,13 @@ import {Token} from '../../utils/token.js';
 const token = new Token();
 Page({
   data: {
- 
+    buttonCanClick:false
   },
   //事件处理函数
 
   onLoad(options){
 
   },
- 
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');

@@ -8,7 +8,7 @@ page{
 	height:80rpx;
 	border-bottom:solid 1px #e0e0e0;
 	background:#fff;
-	margin-bottom: 20rpx;x
+	margin-bottom: 20rpx;
 }
 .tabs_item{
 	width:25%;

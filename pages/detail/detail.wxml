@@ -6,18 +6,17 @@
      {{web_mainData.title}}
   </view>
   <view class="font28 color" style="height:64rpx;">
-     ¥{{web_mainData.price}}
+     ¥{{web_mainData.contactPhone}}
   </view>
 </view>
 <view class="w710 contact_deatil  bg1" style="margin-top:20rpx;">
   <view class="font30 color3" style="height:96rpx;line-height:96rpx;">
      产品详情
   </view>
-  <image src="/images/banner.jpg"></image>
   <view class="font24 color6">
     <view class="content ql-editor" >
       <import src="../../wxParse/wxParse.wxml"/>
-      <template is="wxParse" data="{{wxParseData:web_noticeData.content}}"/>
+      <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
     </view> 
   </view>
 </view>

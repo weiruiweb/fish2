@@ -1,5 +1,5 @@
 import {Api} from '../../utils/api.js';
-const api = new Api();
+var api = new Api();
 const app = getApp();
 import {Token} from '../../utils/token.js';
 const token = new Token();
@@ -20,15 +20,17 @@ Page({
     is_show:true,
     potData:[],
     foodData:[],
-    isLoadAll:false
+    merChantData:[],
+    isFirstLoadAllStandard:['getMerchantData','getPotData','getFoodData','getCouponData','getNoticeData','checkToday',
+    'getCouponDataTwo'],
+    isLoadAll:false,
+    buttonCanClick:false
   },
   //事件处理函数
-
-
-
   onLoad(options) {
+    wx.showLoading();
     const self = this;
-
+    wx.removeStorageSync('checkLoadAll');
     self.data.paginate = getApp().globalData.paginate;
     self.getCouponDataTwo();
     self.getSliderData()
@@ -51,7 +53,8 @@ Page({
       });
 
       self.getNoticeData();
-      self.getCouponData()
+      self.getCouponData();
+      self.getMerchantData();
     };
     api.labelGet(postData,callback);
   },
@@ -68,7 +71,7 @@ Page({
         searchItem:{
           title:['=',['特色锅底']],
         },
-        middleKey:'category_id',
+        middleKey:'menu_id',
         key:'id',
         condition:'in',
       },
@@ -83,8 +86,9 @@ Page({
         web_potData:self.data.potData,
       });
       self.getFoodData();
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getPotData',self);
     };
-    api.productGet(postData,callback);
+    api.articleGet(postData,callback);
   },
 
   getFoodData(){
@@ -100,7 +104,7 @@ Page({
         searchItem:{
           title:['=',['精品推荐']],
         },
-        middleKey:'category_id',
+        middleKey:'menu_id',
         key:'id',
         condition:'in',
       },
@@ -112,15 +116,14 @@ Page({
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none')
       };
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getFoodData',self);
       self.setData({
         web_foodData:self.data.foodData,
       });
 
     };
-    api.productGet(postData,callback);
+    api.articleGet(postData,callback);
   },
-
-
 
   getCouponData(){
     const self = this;
@@ -133,6 +136,7 @@ Page({
       if(res.info.data.length>0){
         self.data.couponData = res.info.data[0]
       }
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getCouponData',self);
       self.setData({
         web_couponData:self.data.couponData,
       });
@@ -152,10 +156,12 @@ Page({
       if(res.info.data.length>0){
         self.data.couponDataTwo = res.info.data[0]
       }
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getCouponDataTwo',self);
       self.setData({
         web_couponDataTwo:self.data.couponDataTwo,
       });
       self.checkToday()
+      console.log(899,res.info.data[0])
     };
     api.productGet(postData,callback);
   },
@@ -180,14 +186,44 @@ Page({
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.noticeData = res.info.data[0];
-        self.data.noticeData.passage1 = self.data.noticeData.passage1.split(',');
-        self.data.noticeData.content = api.wxParseReturn(res.info.data[0].content).nodes;
       };
-      console.log('getNoticeData',self.data.noticeData.passage1)
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getNoticeData',self);
       self.setData({
         web_noticeData:self.data.noticeData,
       });
       self.getPotData()
+    };
+    api.articleGet(postData,callback);
+  },
+  getMerchantData(){
+    const self = this;
+    const postData = {};
+    postData.searchItem = {
+      thirdapp_id:getApp().globalData.thirdapp_id
+    };
+    postData.getBefore = {
+      aboutData:{
+        tableName:'label',
+        searchItem:{
+          title:['=',['商户介绍']],
+        },
+        middleKey:'menu_id',
+        key:'id',
+        condition:'in',
+      },
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.merChantData = res.info.data[0];
+        self.data.merChantData.passage1 = self.data.merChantData.description.split(',');
+        self.data.merChantData.content = api.wxParseReturn(res.info.data[0].content).nodes;
+      };
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMerchantData',self);
+      self.setData({
+        web_merChantData:self.data.merChantData,
+      });
+      console.log(999,self.data.merChantData);
+      console.log(1000,self.data.merChantData.passage1);
     };
     api.articleGet(postData,callback);
   },
@@ -206,6 +242,7 @@ Page({
       if(res.solely_code==100000){
         self.data.todayCouponData = res.info.data
       };
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'checkToday',self);
       self.setData({
         web_todayCouponData:self.data.todayCouponData
       })
@@ -238,19 +275,23 @@ Page({
       if(res&&res.solely_code==100000){
         api.showToast('领取成功！','none')
       }; 
+      
     };
     api.addOrder(postData,callback);
   },
 
   addOrder(){
     const self = this;
+    api.buttonCanClick(self);
+    console.log(1);
+
     if(!self.data.order_id){
     const postData = {
         tokenFuncName:'getProjectToken',
         product:[
           {id:self.data.couponData.id,count:1}
         ],
-        pay:{wxPay:self.data.couponData.price},
+        pay:{wxPay:self.data.couponData.price,wxPayStatus:0},
         type:3,
         data:{
           balance:self.data.couponData.discount
@@ -258,10 +299,17 @@ Page({
       };
       console.log(postData)
       const callback = (res)=>{
-      if(res&&res.solely_code==100000){
-          self.data.order_id = res.info.id
-          self.pay(self.data.order_id);          
+        if(res&&res.solely_code==100000){
+          
+          const payCallback=(payData)=>{
+            if(payData==1){
+               api.showToast('支付成功','none');
+            };   
+          };
+          api.realPay(res.info,payCallback);  
+
         }; 
+        api.buttonCanClick(self,true);
       };
       api.addOrder(postData,callback);
     }else{
@@ -273,7 +321,6 @@ Page({
     const self = this;
     var order_id = self.data.order_id;
     const postData = {
-      
       searchItem:{
         id:order_id,
       }

@@ -1,28 +1,24 @@
 <!--index.wxml-->
 <view class="tabs font30 flexRowBetween color6">
-    <view class="tabs_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
+    <view class="tabs_item " data-num="0" bindtap="{{web_buttonCanClick?'menuClick':''}}">
         <text class="{{web_num == 0?'tabs_this':''}}">全部</text>
     </view>
-    <view class="tabs_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
+    <view class="tabs_item " data-num="1" bindtap="{{web_buttonCanClick?'menuClick':''}}">
         <text class="{{web_num == 1?'tabs_this':''}}">未使用</text>
     </view>
-    <view class="tabs_item" data-num="2" bindtap="{{!buttonClicked?'menuClick':''}}">
+    <view class="tabs_item" data-num="2" bindtap="{{web_buttonCanClick?'menuClick':''}}">
         <text class="{{web_num == 2?'tabs_this':''}}">已使用</text>
     </view>
-    <view class="tabs_item" data-num="3" bindtap="{{!buttonClicked?'menuClick':''}}">
+    <view class="tabs_item" data-num="3" bindtap="{{web_buttonCanClick?'menuClick':''}}">
         <text class="{{web_num == 3?'tabs_this':''}}">已过期</text>
     </view>
 </view>
 
 
 <view class="w710">
-
   <block wx:for="{{web_mainData}}" wx:key="id">
-
     <view class="store_discount w710">
-
       <view class="font30 color3" style="height:86rpx;line-height:86rpx;">顺水鱼馆</view>
-
       <view class="discount_box">
         <view class="discount_cont flex">
           <view class="discount_left">

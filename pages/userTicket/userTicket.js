@@ -8,10 +8,13 @@ const token = new Token();
 Page({
   data: {
     mainData:[],
+    isFirstLoadAllStandard:['getOrderData'],
+    buttonClicked:false,
+    isLoadAll:false,
   },
-  //事件处理函数
 
   onLoad(options) {
+    wx.showLoading();
     const self = this;
     self.getOrderData()
   },
@@ -33,9 +36,9 @@ Page({
         api.showToast('没有更多了','none')
       };
       self.setData({
-        
         web_mainData:self.data.mainData
-      })
+      });
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getOrderData',self);
     }
     api.orderGet(postData,callback)
   },
