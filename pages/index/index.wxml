@@ -51,8 +51,6 @@
     </view>
   </view>
 </view>
-
-
 <view class="w710 bg1">
     <view class="logo flexCenter">
         <view class="logo_img">
@@ -101,7 +99,7 @@
         </view>
         <view class="volume_detail">
             <view class="font32 color3">
-                {{web_couponData.price}}元抵{{web_couponData.discount}}.00元
+                {{web_couponData.description}}元抵{{web_couponData.discount}}.00元
             </view>
             <view class="font22 color6">
                 不包含酒水、饮料、可叠加使用

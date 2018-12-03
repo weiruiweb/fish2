@@ -227,8 +227,6 @@ Page({
     };
     api.articleGet(postData,callback);
   },
-
-
   checkToday(){
     const self = this;
     const postData = {};
