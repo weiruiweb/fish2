@@ -12,18 +12,19 @@ class Base{
     request(params) {
         var that = this;
         getApp().globalData.buttonClick = true;
-        var baseRestUrl = 'http://shunshuiyuguan.gz01.bdysite.com/api/public/index.php/api/v1/';
+        var baseRestUrl = 'https://shunshuiyu.yisuiyanghuoguo.com/api/public/index.php/api/v1/';
         var url=baseRestUrl + params.url;
-        const callback = (res)=>{
+        const callback = ()=>{
             that.request(params);
         };
 
         if(params.data.tokenFuncName){
-            console.log('params.data.token');
+            
             if(params.data.refreshToken){
                 token[params.data.tokenFuncName](callback,{refreshToken:true});
             }else{
                 params.data.token = token[params.data.tokenFuncName](callback);
+                console.log('params.data.token',params.data.token);
             };
             if(!params.data.token){
                 return;
@@ -268,6 +269,7 @@ class Base{
         return false;
 
     };
+
 
     setItemInArray(array,item,fieldName,type='push'){
         var findI = -1;

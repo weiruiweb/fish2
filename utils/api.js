@@ -239,6 +239,18 @@ class Api extends Base{
         this.request(allParams);       
     } 
 
+    addVirtualOrder(param,callback){
+        var allParams ={
+            url:'Func/Order/addVirtualOrder',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    } 
+
 
     signIn(param,callback){
         var allParams ={

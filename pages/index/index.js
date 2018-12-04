@@ -130,7 +130,8 @@ Page({
     const postData = {};
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:3
+      type:3,
+      title:'抵扣券'
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
@@ -263,9 +264,9 @@ Page({
         {id:id,count:1}
       ],
       pay:{score:0},
-      type:4,
+      type:3,
       data:{
-        deadline:end_time,
+        deadline:new Date().getTime()+86400*self.data.couponData.deadline,
         discount:self.data.couponDataTwo.discount
       }
     };
@@ -273,7 +274,6 @@ Page({
       if(res&&res.solely_code==100000){
         api.showToast('领取成功！','none')
       }; 
-      
     };
     api.addOrder(postData,callback);
   },
@@ -284,7 +284,7 @@ Page({
     console.log(1);
 
     if(!self.data.order_id){
-    const postData = {
+      const postData = {
         tokenFuncName:'getProjectToken',
         product:[
           {id:self.data.couponData.id,count:1}
@@ -292,17 +292,22 @@ Page({
         pay:{wxPay:self.data.couponData.price,wxPayStatus:0},
         type:3,
         data:{
-          balance:self.data.couponData.discount
+          balance:self.data.couponData.discount,
+          deadline:new Date().getTime()+86400*self.data.couponData.deadline
         }
       };
-      console.log(postData)
+
       const callback = (res)=>{
         if(res&&res.solely_code==100000){
-          
           const payCallback=(payData)=>{
             if(payData==1){
                api.showToast('支付成功','none');
-            };   
+               setTimeout(function(){
+                api.pathTo('pages/userDiscount/userDiscount','nav');
+               },300);
+            }else{
+              api.showToast('支付失败','none');
+            }   
           };
           api.realPay(res.info,payCallback);  
 

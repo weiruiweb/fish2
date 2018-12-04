@@ -12,7 +12,6 @@ Page({
     startTime:'',
     endTime:'',
     searchItem:{
-      type:1,
       status:1
     },
     complete_api:[],

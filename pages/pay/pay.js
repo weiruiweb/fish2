@@ -8,12 +8,15 @@ Page({
   data: {
     mainData:[],
     couponData:[],
+    choosedCouponData:[],
     submitData:{
       price:''
     },
-    isFirstLoadAllStandard:['getMainData','getCouponData'],
+    isFirstLoadAllStandard:['getMainData'],
     isLoadAll:false,
     buttonCanClick:false,
+    couponCount:0,
+    count:0
 
   },
   //事件处理函数
@@ -21,15 +24,16 @@ Page({
     const self = this;
     wx.showLoading();
     self.getMainData();
-    self.getCouponData()
+    self.setData({
+      web_choosedCouponData:self.data.choosedCouponData
+    })
   },
   getMainData(){
     const self = this;
     const postData = {
       tokenFuncName:'getProjectToken',
       searchItem:{
-        type:3, 
-        pay_status:1
+        type:['in',[3,4]], 
       }
     };
     const callback = (res) =>{
@@ -42,27 +46,10 @@ Page({
       })
     }
     api.orderGet(postData,callback)
+
   },
 
-  getCouponData(){
-    const self = this;
-    const postData = {
-      tokenFuncName:'getProjectToken',
-      searchItem:{
-        type:4, 
-      }
-    };
-    const callback = (res) =>{
-      if(res.info.data.length>0){
-        self.data.couponData.push.apply(self.data.couponData,res.info.data)
-      }
-      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getCouponData',self);
-      self.setData({
-        web_couponData:self.data.couponData
-      })
-    }
-    api.orderGet(postData,callback)
-  },
+
   changeBind(e){
     const self = this;
     api.fillChange(e,self,'submitData');
@@ -71,41 +58,72 @@ Page({
       web_submitData:self.data.submitData,
     });  
   },
+
+  couponChoose(e){
+
+    const self = this;
+    var id = api.getDataSet(e,'id');
+    var count = api.getDataSet(e,'count');
+    var itemRes = api.findItemInArray(self.data.choosedCouponData,'id',id);
+    if(itemRes){
+      self.data.count -= count;
+      self.data.choosedCouponData.splice(itemRes[0],1);
+    }else{
+      self.data.count += count;
+      self.data.choosedCouponData.push({id:id,price:count});
+    };
+    self.setData({
+      web_choosedCouponData:self.data.choosedCouponData
+    })
+    console.log('self.data.count',self.data.count);
+    console.log('self.data.choosedCouponData',self.data.choosedCouponData);
+    
+  },
+
   pay(){
     const self = this;
     api.buttonCanClick(self);
     const postData = {
       tokenFuncName:'getProjectToken',
     };
-    postData.coupon = {
-      coupon_no:self.data.couponNo,
-      price:self.data.couponPrice.toFixed(2)
+    postData.data = {
+      price:self.data.count + parseFloat(self.data.submitData.price)
     };
+    postData.pay = {
+      wxPay:self.data.submitData.price,
+      wxPayStatus:0,
+      coupon:self.data.choosedCouponData
+    };
+    
     const callback = (res)=>{
       console.log(res)
       if(res.solely_code==100000){
-        api.showToast('支付成功','none')    
-        if(self.data.mainData.paidMoney!=0){
+         
+        if(res.info){
             const payCallback=(payData)=>{
-            if(payData==1){
-              api.showToast('支付成功','none')     
-            }else{
-              api.showToast('调起微信支付失败','none')
+              if(payData==1){
+                api.showToast('支付成功','none');
+                api.pathTo('pages/index/index','redi');     
+              }else{
+                api.showToast('调起微信支付失败','none');
+              };
             };
             api.realPay(res.info,payCallback);    
-          }
+          
         };
       }else{
         api.showToast('支付失败','none')
       } 
       api.buttonCanClick(self,true) 
     }
-    api.directPay(postData,callback);
+    api.addVirtualOrder(postData,callback);
   },
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
+
   intoPathRedirect(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'redi');

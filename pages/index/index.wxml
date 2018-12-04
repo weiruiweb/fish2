@@ -99,7 +99,7 @@
         </view>
         <view class="volume_detail">
             <view class="font32 color3">
-                {{web_couponData.description}}元抵{{web_couponData.discount}}.00元
+                {{web_couponData.description}}
             </view>
             <view class="font22 color6">
                 不包含酒水、饮料、可叠加使用
@@ -107,7 +107,7 @@
         </view>
         <view class="volume_buy">
             <view class="buy_btn font28" bindtap="{{web_buttonCanClick?'addOrder':''}}" >购买</view>
-            <view class="font22 color9">{{view_count}}人已购买</view>
+            <view class="font22 color9">{{web_couponData.sale_count}}人已购买</view>
         </view>
     </view>
 </view>

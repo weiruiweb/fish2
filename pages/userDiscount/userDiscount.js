@@ -38,7 +38,7 @@ Page({
     postData.tokenFuncName='getProjectToken',
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
-    postData.searchItem.type = 4;
+    postData.searchItem.type = 3;
     postData.searchItem.user_no = wx.getStorageSync('info').user_no;
     postData.order = {
       create_time:'desc'
@@ -79,10 +79,10 @@ Page({
     }else if(num=='1'){
       self.data.searchItem.order_step = '0';
     }else if(num=='2'){
-      self.data.searchItem.order_step = '1'
+      self.data.searchItem.order_step = '3'
     }else if(num=='3'){
       self.data.searchItem.deadline = ['<',endTime]
-    }
+    };
     self.setData({
       web_mainData:[],
     });

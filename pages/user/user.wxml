@@ -31,15 +31,6 @@
             <image src="/images/next_page.jpg"></image>
         </view>
     </view>
-    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/userTicket/userTicket">
-        <view class="user_left flexRowBetween">
-            <image src="/images/user_icon3.png"></image>
-            <text>抵用券</text>
-        </view>
-        <view class="next_page">
-            <image src="/images/next_page.jpg"></image>
-        </view>
-    </view>
     <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/userContact/userContact">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon4.png"></image>

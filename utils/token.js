@@ -103,7 +103,7 @@ class Token {
                             
                             if(callback){
                                 callback && callback(res.data.token);
-                            }      
+                            };      
                         }else{
                             wx.showToast({
                                 title: '获取token失败',
