@@ -17,7 +17,7 @@
 </view>
 
 
-<view class="discount" wx:if="{{web_couponDataTwo.length=='0'}}" catchtouchmove="true">
+<view class="discount" wx:if="{{web_todayCouponData.length=='0'}}" catchtouchmove="true">
   <view class="discount_cont" >
     <image src="/images/dialog.png"></image>
     <view class="discount_box">
@@ -28,7 +28,7 @@
                <view class="discount_number flex">
                    <view class="discount_left flexCenter">
                        <view class="font30 color1">¥</view>
-                       <view class="color1" style="font-size:100rpx;">{{web_couponDataTwo[0].discount}}</view>
+                       <view class="color1" style="font-size:100rpx;">{{web_couponDataTwo.discount}}</view>
                    </view>
                    <view class="discount_right flexCenter">
                        <view class="discount_line"></view>
@@ -37,10 +37,10 @@
                    </view>
                </view>
            </view>
-           <view class="color1" style="font-size:20rpx;">凡进店消费减{{web_couponDataTwo[0].discount}}，每人每天限领一次，有效期至{{func.timestampToTime(web_couponDataTwo[0].end_time)}}</view>
+           <view class="color1" style="font-size:20rpx;">凡进店消费减{{web_couponDataTwo.discount}}，每人每天限领一次，有效期至{{func.timestampToTime(web_couponDataTwo.end_time)}}</view>
            <view class="discount_btn">
                <image src="/images/btn_bg.png"></image>
-               <form bindsubmit="addCouponOrder" report-submit="true" data-id="{{web_couponDataTwo[0].id}}" data-end_time="{{web_couponDataTwo[0].id}}">
+               <form bindsubmit="addCouponOrder" report-submit="true" data-id="{{web_couponDataTwo.id}}" >
                 <button  form-type="submit" class="color">立即领取</button>
                </form>
            </view>

@@ -10,7 +10,7 @@
 	border:solid 1px #c4010c;
 	border-radius:10rpx;
 	line-height:60rpx;
-	padding:3%;
+	padding:1%;
 }
 .pay_number>view{
 	width:12%;

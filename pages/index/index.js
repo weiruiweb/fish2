@@ -151,7 +151,8 @@ Page({
     const postData = {};
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:4
+      type:3,
+      title:"优惠券"
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
@@ -234,7 +235,8 @@ Page({
     postData.tokenFuncName='getProjectToken',
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:4
+      type:3,
+      deadline:['NOT IN',['']]
     };
     postData.searchItem.create_time = ['between',[new Date(new Date().setHours(0, 0, 0, 0)) / 1000,new Date(new Date().setHours(0, 0, 0, 0)) / 1000 + 24 * 60 * 60-1]]
     const callback = (res)=>{
@@ -257,16 +259,16 @@ Page({
       return;
     };
     var id = api.getDataSet(e,'id');
-    var end_time = api.getDataSet(e,'end_time');
+
     const postData = {
       tokenFuncName:'getProjectToken',
       product:[
         {id:id,count:1}
       ],
-      pay:{score:0},
+
       type:3,
       data:{
-        deadline:new Date().getTime()+86400*self.data.couponData.deadline,
+        deadline:new Date().getTime()+parseFloat(self.data.couponDataTwo.passage1),
         discount:self.data.couponDataTwo.discount
       }
     };
@@ -293,7 +295,7 @@ Page({
         type:3,
         data:{
           balance:self.data.couponData.discount,
-          deadline:new Date().getTime()+86400*self.data.couponData.deadline
+          deadline:new Date().getTime()+parseFloat(self.data.couponData.passage1)
         }
       };
 

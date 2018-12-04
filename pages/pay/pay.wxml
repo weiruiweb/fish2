@@ -32,10 +32,10 @@
       </view>
     </block>
 </view>
-<form  bindsubmit="{{web_buttonCanClick?'pay':''}}">
+<form  bindsubmit="{{web_buttonCanClick?'pay':''}}" style="margin-bottom:50rpx;">
     <button class="submit_info" form-type="submit">立即支付</button>
 </form>
-<view class="font22 color6" style="text-align:center;position:fixed;bottom:130rpx;left:0;width:100%;">技术支持：西安纯粹云科技有限公司</view>
+<view class="font22 color6" style="text-align:center;width:100%;">技术支持：西安纯粹云科技有限公司</view>
 <view style="width:100%;height:120rpx;"></view>
 <view class="navbar">
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">

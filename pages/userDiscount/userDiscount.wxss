@@ -37,7 +37,7 @@ page{
 	margin-bottom:20rpx;
 }
 .discount_left{
-	width:13%;
+	width:20%;
 	height:100%;
 	position:relative;
 	background: #fff3f2;
@@ -52,7 +52,7 @@ page{
 	text-align: center;
 }
 .discount_center{
-	width:62.5%;
+	width:80%;
 	height:100%;
 	background: #fff3f2;
 	border-radius:0 20rpx 20rpx 0;
