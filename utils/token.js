@@ -92,7 +92,7 @@ class Token {
                 };
                 console.log(postData)
                 wx.request({
-                    url: 'http://shunshuiyuguan.gz01.bdysite.com/api/public/index.php/api/v1/Base/ProgrameToken/get',
+                    url: 'https://shunshuiyu.yisuiyanghuoguo.com/api/public/index.php/api/v1/Base/ProgrameToken/get',
                     method:'POST',
                     data:postData,
                     success:function(res){

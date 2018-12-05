@@ -23,6 +23,7 @@ Page({
   onLoad(){
     const self = this;
     wx.showLoading();
+    wx.removeStorageSync('checkLoadAll');
     self.getMainData();
     self.setData({
       web_choosedCouponData:self.data.choosedCouponData
