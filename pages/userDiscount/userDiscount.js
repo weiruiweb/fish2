@@ -79,7 +79,8 @@ Page({
     }else if(num=='1'){
       self.data.searchItem.order_step = '0';
     }else if(num=='2'){
-      self.data.searchItem.order_step = '3'
+      self.data.searchItem.order_step = '3';
+      self.data.searchItem.status = -1;
     }else if(num=='3'){
       self.data.searchItem.deadline = ['<',endTime]
     };

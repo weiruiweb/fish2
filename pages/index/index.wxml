@@ -40,7 +40,7 @@
            <view class="color1" style="font-size:20rpx;">凡进店消费减{{web_couponDataTwo.discount}}，每人每天限领一次，有效期至{{func.timestampToTime(web_couponDataTwo.end_time)}}</view>
            <view class="discount_btn">
                <image src="/images/btn_bg.png"></image>
-               <form bindsubmit="addCouponOrder" report-submit="true" data-id="{{web_couponDataTwo.id}}" >
+               <form bindsubmit="{{web_buttonCanClick?'addCouponOrder':''}}" report-submit="true" data-id="{{web_couponDataTwo.id}}" >
                 <button  form-type="submit" class="color">立即领取</button>
                </form>
            </view>

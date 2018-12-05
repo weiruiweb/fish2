@@ -102,8 +102,9 @@ Page({
         if(res.info){
             const payCallback=(payData)=>{
               if(payData==1){
-                api.showToast('支付成功','none');
-                api.pathTo('pages/index/index','redi');     
+                api.showToast('支付成功','none',function(){
+                  api.pathTo('/pages/index/index','redi')  
+                });
               }else{
                 api.showToast('调起微信支付失败','none');
               };

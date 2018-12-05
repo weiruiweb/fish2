@@ -314,6 +314,18 @@ class Api extends Base{
         this.request(allParams);
     }    
 
+    orderItemGet(param,callback){
+        var allParams ={
+            url:'Common/OrderItem/Get',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
+    } 
+
 
     labelUpdate(param,callback){
         var allParams ={

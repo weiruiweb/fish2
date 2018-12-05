@@ -229,14 +229,14 @@ Page({
     };
     api.articleGet(postData,callback);
   },
+
   checkToday(){
     const self = this;
     const postData = {};
     postData.tokenFuncName='getProjectToken',
     postData.searchItem = {
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      type:3,
-      deadline:['NOT IN',['']]
+      status:['in',[1,-1]],
+      product_id:self.data.couponDataTwo.id
     };
     postData.searchItem.create_time = ['between',[new Date(new Date().setHours(0, 0, 0, 0)) / 1000,new Date(new Date().setHours(0, 0, 0, 0)) / 1000 + 24 * 60 * 60-1]]
     const callback = (res)=>{
@@ -246,16 +246,19 @@ Page({
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'checkToday',self);
       self.setData({
         web_todayCouponData:self.data.todayCouponData
-      })
+      });
+      api.buttonCanClick(self,true)
     }
-    api.orderGet(postData,callback)
+    api.orderItemGet(postData,callback)
   },
 
 
   addCouponOrder(e){
     const self = this;
+    api.buttonCanClick(self);
     if(self.data.todayCouponData.length>0){
-      api.showToast('每个用户每天限领取一张','none')
+      api.showToast('每个用户每天限领取一张','none');
+      api.buttonCanClick(self,true)
       return;
     };
     var id = api.getDataSet(e,'id');
@@ -265,7 +268,9 @@ Page({
       product:[
         {id:id,count:1}
       ],
-
+      data:{
+        limit:1
+      },
       type:3,
       data:{
         deadline:new Date().getTime()+parseFloat(self.data.couponDataTwo.passage1),
@@ -274,8 +279,11 @@ Page({
     };
     const callback = (res)=>{
       if(res&&res.solely_code==100000){
-        api.showToast('领取成功！','none')
+        api.showToast('领取成功！','none',function(){
+          self.checkToday()
+        });   
       }; 
+      
     };
     api.addOrder(postData,callback);
   },
