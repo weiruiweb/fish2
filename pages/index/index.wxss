@@ -166,7 +166,7 @@ swiper{
 	margin:0 auto;
 }
 .address_detail{
-	width:63%;
+	width:73%;
 }
 .phone{
 	width:13.5%;

@@ -28,7 +28,7 @@
           <view class="discount_center font28">
               <view class="color">¥<text>{{item.products[0].snap_product.discount}}</text></view>
               <view class="color6">仅限本店使用</view>
-              <view class="color6">2018.9.20 -2018-9.22</view>
+              <!-- <view class="color6">2018.9.20 -2018-9.22</view> -->
           </view>
         </view>
       </view>

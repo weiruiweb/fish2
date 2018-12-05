@@ -20,7 +20,22 @@ Page({
     self.getNoticeData()
 
   },
-
+  intoMap:function(){
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function (res) {  //因为这里得到的是你当前位置的经纬度
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.openLocation({        //所以这里会显示你当前的位置
+          latitude: 34.320487,
+          longitude: 109.038907,
+          name: "西安市浐灞生态区浐灞半岛A15区",
+          address:"西安市浐灞生态区浐灞半岛A15区",
+          scale: 28
+        })
+      }
+    })
+  },
   getNoticeData(){
     const self = this;
     const postData = {};

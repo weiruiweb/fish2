@@ -29,6 +29,7 @@ page{
 	border-radius:20rpx;
 	background:#fff;
 	padding-bottom:20rpx;
+	margin-bottom:20rpx;
 }
 .discount_box{
 	width:100%;

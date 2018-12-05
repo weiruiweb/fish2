@@ -60,17 +60,14 @@
     </view>
     <view class="store flex">
         <view class="store_in flexRowBetween">
-            <view class="address flex">
+            <view class="address flex" bindtap="intoMap">
                 <image src="/images/address.png"></image>
             </view>
-            <view class="address_detail color6 font24">
+            <view class="address_detail color6 font24" bindtap="intoMap">
                 {{web_noticeData.title}}
             </view>
             <view class="phone flex" bindtap="phoneCall">
                 <image src="/images/phone.png"></image>
-            </view>
-            <view class="phone flex">
-                <image src="/images/wx_contact.png"></image>
             </view>
         </view>
     </view>

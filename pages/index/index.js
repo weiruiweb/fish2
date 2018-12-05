@@ -30,13 +30,31 @@ Page({
   onLoad(options) {
     wx.showLoading();
     const self = this;
+    wx.showShareMenu({
+      withShareTicket: true
+    });
     wx.removeStorageSync('checkLoadAll');
     self.data.paginate = getApp().globalData.paginate;
     self.getCouponDataTwo();
     self.getSliderData()
   },
 
-
+  intoMap:function(){
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function (res) {  //因为这里得到的是你当前位置的经纬度
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.openLocation({        //所以这里会显示你当前的位置
+          latitude: 34.320487,
+          longitude: 109.038907,
+          name: "西安市浐灞生态区浐灞半岛A15区",
+          address:"西安市浐灞生态区浐灞半岛A15区",
+          scale: 28
+        })
+      }
+    })
+  },
   getSliderData(){
     const self = this;
     const postData = {};
@@ -369,7 +387,33 @@ Page({
       self.getFoodData();
     };
   },
-
+  onShareAppMessage(res){
+    const self = this;
+     console.log(res)
+      if(res.from == 'button'){
+        self.data.shareBtn = true;
+      }else{   
+        self.data.shareBtn = false;
+      }
+      return {
+        title: '顺水鱼馆',
+        path: 'pages/index/index',
+        success: function (res){
+          console.log(res);
+          console.log(parentNo)
+          if(res.errMsg == 'shareAppMessage:ok'){
+            console.log('分享成功')
+          }else{
+            wx.showToast({
+              title: '分享失败',
+            })
+          }
+        },
+        fail: function(res) {
+          console.log(res)
+        }
+      }
+  },
 
   mask:function(e){
     this.setData({

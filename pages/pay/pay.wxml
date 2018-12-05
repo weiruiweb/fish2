@@ -17,7 +17,7 @@
                   <view class="discount_center font28">
                     <view class="color">¥<text>{{item.price}}</text>满{{item.balance}}减{{item.balance-item.price}}</view>
                     <view class="color6">仅限本店使用</view>
-                    <view class="color6">2018.9.20 -2018-9.22</view>
+                    <!-- <view class="color6">2018.9.20 -2018-9.22</view> -->
                   </view>
                   <view class="discount_right">
                       <view class="get_discout font30 color1">可使用</view>
