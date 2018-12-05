@@ -27,7 +27,7 @@ Page({
         var latitude = res.latitude
         var longitude = res.longitude
         wx.openLocation({        //所以这里会显示你当前的位置
-          latitude: 34.320487,
+          latitude: 34.325739,
           longitude: 109.038907,
           name: "西安市浐灞生态区浐灞半岛A15区",
           address:"西安市浐灞生态区浐灞半岛A15区",
