@@ -376,6 +376,9 @@
 }
 .ql-editor .ql-align-center {
   text-align: center;
+  overflow:hidden;
+  width:100%;
+  height:100%;
 }
 .ql-editor .ql-align-justify {
   text-align: justify;
