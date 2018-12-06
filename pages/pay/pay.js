@@ -35,6 +35,7 @@ Page({
       tokenFuncName:'getProjectToken',
       searchItem:{
         type:['in',[3,4]], 
+        pay_status:1
       }
     };
     const callback = (res) =>{
@@ -61,11 +62,12 @@ Page({
   },
 
   couponChoose(e){
-
     const self = this;
     var id = api.getDataSet(e,'id');
     var count = api.getDataSet(e,'count');
     var itemRes = api.findItemInArray(self.data.choosedCouponData,'id',id);
+    console.log(999,itemRes);
+    console.log(1000,self.data.choosedCouponData);
     if(itemRes){
       self.data.count -= count;
       self.data.choosedCouponData.splice(itemRes[0],1);
@@ -90,11 +92,19 @@ Page({
     postData.data = {
       price:self.data.count + parseFloat(self.data.submitData.price)
     };
-    postData.pay = {
-      wxPay:self.data.submitData.price,
-      wxPayStatus:0,
-      coupon:self.data.choosedCouponData
+    if(self.data.choosedCouponData.length>0){
+      postData.pay = {
+        wxPay:self.data.submitData.price,
+        wxPayStatus:0,
+        coupon:self.data.choosedCouponData
+      };
+    }else{
+      postData.pay = {
+        wxPay:self.data.submitData.price,
+        wxPayStatus:0,
+      };
     };
+    
     
     const callback = (res)=>{
       console.log(res)

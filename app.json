@@ -7,9 +7,7 @@
     "pages/userDiscount/userDiscount",
     "pages/userTicket/userTicket",
     "pages/userContact/userContact",
-    "pages/detail/detail",
-    "pages/map/map"
-
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

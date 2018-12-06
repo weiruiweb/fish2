@@ -46,10 +46,11 @@ Page({
         var latitude = res.latitude
         var longitude = res.longitude
         wx.openLocation({        //所以这里会显示你当前的位置
-          latitude: 34.325739,
           longitude: 109.038907,
-          name: "西安市浐灞生态区浐灞半岛A15区",
-          address:"西安市浐灞生态区浐灞半岛A15区",
+          latitude: 34.319956,
+          //109.045249,34.325841
+          name: "浐灞半岛A15区1号楼顺水鱼馆",
+          address:"浐灞半岛A15区1号楼顺水鱼馆",
           scale: 28
         })
       }
@@ -170,7 +171,7 @@ Page({
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:3,
-      title:"优惠券"
+      id:2
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
@@ -253,13 +254,13 @@ Page({
     const postData = {};
     postData.tokenFuncName='getProjectToken',
     postData.searchItem = {
-      status:['in',[1,-1]],
       product_id:self.data.couponDataTwo.id
     };
-    postData.searchItem.create_time = ['between',[new Date(new Date().setHours(0, 0, 0, 0)) / 1000,new Date(new Date().setHours(0, 0, 0, 0)) / 1000 + 24 * 60 * 60-1]]
     const callback = (res)=>{
       if(res.solely_code==100000){
-        self.data.todayCouponData = res.info.data
+        if(res.info.data.length>0){
+          self.data.todayCouponData = res.info.data
+        };
       };
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'checkToday',self);
       self.setData({
@@ -289,6 +290,9 @@ Page({
       data:{
         limit:1
       },
+      pay:{
+        other:0
+      },
       type:3,
       data:{
         deadline:new Date().getTime()+parseFloat(self.data.couponDataTwo.passage1),
@@ -300,8 +304,13 @@ Page({
         api.showToast('领取成功！','none',function(){
           self.checkToday()
         });   
-      }; 
-      
+      }else{
+        api.showToast('领取失败！','none',function(){
+          self.setData({
+            web_todayCouponData:[]
+          })
+        });
+      };
     };
     api.addOrder(postData,callback);
   },
@@ -424,7 +433,7 @@ Page({
  
   close:function(e){
     this.setData({
-      is_show:false,
+      web_todayCouponData:[1]
     })
   },
 

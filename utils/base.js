@@ -260,7 +260,6 @@ class Base{
 
 
     findItemInArray(array,fieldName,field){
-
         for(var i=0;i<array.length;i++){
             if(array[i][fieldName] == field){
                 return [i,array[i]];

@@ -27,10 +27,12 @@ Page({
         var latitude = res.latitude
         var longitude = res.longitude
         wx.openLocation({        //所以这里会显示你当前的位置
-          latitude: 34.325739,
+          // longitude: 109.045249,
+          // latitude: 34.325841,
           longitude: 109.038907,
-          name: "西安市浐灞生态区浐灞半岛A15区",
-          address:"西安市浐灞生态区浐灞半岛A15区",
+          latitude: 34.319956,
+          name: "浐灞半岛A15区1号楼顺水鱼馆",
+          address:"浐灞半岛A15区1号楼顺水鱼馆",
           scale: 28
         })
       }

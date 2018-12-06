@@ -13,7 +13,7 @@
       </swiper>
     </view>
 </view>
-<view class="mask" wx:if="{{web_couponDataTwo.length=='0'}}" catchtouchmove="true" bindtap="mask">
+<view class="mask" wx:if="{{web_todayCouponData.length=='0'}}" catchtouchmove="true" bindtap="mask">
 </view>
 
 
@@ -22,7 +22,7 @@
     <image src="/images/dialog.png"></image>
     <view class="discount_box">
         <view class="discount_in">
-           <view class="discount_tlt" style="color:#ffdd18;font-size:48rpx;">优惠券领取</view>
+           <view class="discount_tlt" style="color:#ffdd18;font-size:48rpx;">{{web_couponDataTwo.title}}领取</view>
            <view class="discount_bg">
                <image src="/images/discount_bg.png"></image>
                <view class="discount_number flex">
@@ -32,12 +32,12 @@
                    </view>
                    <view class="discount_right flexCenter">
                        <view class="discount_line"></view>
-                       <view class="font24 color1 discount_center">优惠券</view>
+                       <view class="font24 color1 discount_center">{{web_couponDataTwo.title}}</view>
                        <view class="discount_line"></view>
                    </view>
                </view>
            </view>
-           <view class="color1" style="font-size:20rpx;">凡进店消费减{{web_couponDataTwo.discount}}，每人每天限领一次，有效期至{{func.timestampToTime(web_couponDataTwo.end_time)}}</view>
+           <view class="color1" style="font-size:20rpx;text-align: center">{{web_couponDataTwo.description}}，{{web_couponDataTwo.passage2}}</view>
            <view class="discount_btn">
                <image src="/images/btn_bg.png"></image>
                <form bindsubmit="{{web_buttonCanClick?'addCouponOrder':''}}" report-submit="true" data-id="{{web_couponDataTwo.id}}" >
@@ -91,7 +91,7 @@
         <view class="volume_item">
             <view class="item_in">
                 <view class="item_top font32 color1"><text>¥</text>{{web_couponData.price}}</view>
-                <view class="item_bottom font22 color1" style="text-align: center;">抵扣券</view>
+                <view class="item_bottom font22 color1" style="text-align: center;">{{web_couponData.title}}</view>
             </view>
         </view>
         <view class="volume_detail">
@@ -99,7 +99,7 @@
                 {{web_couponData.description}}
             </view>
             <view class="font22 color6">
-                不包含酒水、饮料、可叠加使用
+                {{web_couponData.passage2}}
             </view>
         </view>
         <view class="volume_buy">
@@ -194,15 +194,23 @@
 <view class="w710 merchant bg1">
     <view class="flex">
         <image src="/images/index_icon1.png"></image>
+        <view class="font30">{{web_merChantData.passage2}}</view>
+    </view>
+    <view class="flex" style="margin-top:12rpx;">
+        <image src="/images/index_icon5.png"></image>
         <view class="font30">{{web_merChantData.contactPhone}}</view>
     </view>
-    <view class="flex" style="margin:30rpx 0;">
-        <image src="/images/index_icon2.png"></image>
-        <block wx:for="{{web_merChantData.passage1}}" wx:key="id">
-          <view class="condition color3 font22">
-             {{item}}
-          </view>
-        </block>
+    <view style="display:flex">
+        <view style="width:8%;height:100%;margin-top:14rpx;">
+            <image src="/images/index_icon2.png"></image>
+        </view>
+        <view class="flex" style="width:92%;flex-wrap:wrap;margin-top:10rpx;">
+            <block wx:for="{{web_merChantData.passage1}}" wx:key="id">
+              <view class="condition color3 font22" style="margin-top:16rpx;">
+                 {{item}}
+              </view>
+            </block>
+        </view>
     </view>
     <view class="font24 color6 detail_img">
         <view class="content ql-editor" >

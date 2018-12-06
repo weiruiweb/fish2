@@ -5,7 +5,7 @@
 	margin:40rpx 0;
 }
 .pay_number input{
-	width:82%;
+	width:35%;
 	height:60rpx;
 	border:solid 1px #c4010c;
 	border-radius:10rpx;

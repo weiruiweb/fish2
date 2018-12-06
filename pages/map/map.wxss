@@ -1,5 +1,0 @@
-/**album.wxss**/
-map{
-	width:750rpx;
-	height:1000rpx;
-}

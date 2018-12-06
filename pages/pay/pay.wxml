@@ -1,7 +1,7 @@
 <!--index1.wxml-->
 <wxs src="../../utils/func.wxs" module="func" />
 <view class="w710">
-    <view class="pay_number flex">
+    <view class="pay_number flexCenter">
         <input class="font28 color6" bindblur="changeBind" data-key="price" value="{{web_submitData.price}}"></input>
         <view class="font32 color6">元</view>
     </view>
@@ -12,11 +12,11 @@
               <view class="discount_cont flex">
                   <view class="discount_left">
                       <image src="/images/discount_bg1.png"></image>
-                      <view class="discount_sort font22 color1">抵用券</view>
+                      <view class="discount_sort font22 color1">{{item.products[0].snap_product.title}}</view>
                   </view>
                   <view class="discount_center font28">
-                    <view class="color">¥<text>{{item.price}}</text>满{{item.balance}}减{{item.balance-item.price}}</view>
-                    <view class="color6">仅限本店使用</view>
+                    <view class="color">¥<text style="margin-right:10rpx;">{{item.discount}}</text>{{item.products[0].snap_product.description}}</view>
+                    <view class="color6">{{item.products[0].snap_product.passage2}}</view>
                     <!-- <view class="color6">2018.9.20 -2018-9.22</view> -->
                   </view>
                   <view class="discount_right">

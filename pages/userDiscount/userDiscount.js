@@ -9,7 +9,7 @@ Page({
     num:0,
     mainData:[],
     searchItem:{
-      
+      pay_status:1
     },
     isFirstLoadAllStandard:['getOrderData'],
     isLoadAll:false,
@@ -73,7 +73,9 @@ Page({
       web_num: num
     });
     var endTime = Date.parse(new Date());
-    self.data.searchItem = {};
+    self.data.searchItem = {
+      pay_status:1
+    };
     if(num=='0'){
       
     }else if(num=='1'){

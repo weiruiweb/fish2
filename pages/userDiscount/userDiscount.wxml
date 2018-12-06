@@ -23,7 +23,7 @@
         <view class="discount_cont flex">
           <view class="discount_left">
               <image src="/images/discount_bg1.png"></image>
-              <view class="discount_sort font22 color1">优惠卷</view>
+              <view class="discount_sort font22 color1">{{item.products[0].snap_product.title}}</view>
           </view>
           <view class="discount_center font28">
               <view class="color">¥<text>{{item.products[0].snap_product.discount}}</text></view>
