@@ -114,13 +114,13 @@
             <image src="/images/tlt1.png"></image>
             <view  class="mall_tlt_txt font30 color3">
                 <view style="width:70%;margin:0 auto" class="flexRowBetween">
-                    <view>特</view>
+                    <view>优</view>
                     <span class="span1"></span>
-                    <view>色</view>
+                    <view>惠</view>
                     <span  class="span2"></span>
-                    <view>锅</view>
+                    <view>推</view>
                     <span class="span1"></span>
-                    <view>底</view>
+                    <view>荐</view>
                 </view>
             </view>
         </view>
@@ -135,32 +135,35 @@
     </view>
   </block>
 </view>
-<view class="w710">
+<view class="w710 bg1">
     <view class="volume w710 flex bg1">
         <view class="mall_tlt">
             <image src="/images/tlt1.png"></image>
             <view  class="mall_tlt_txt font30 color3">
                 <view style="width:70%;margin:0 auto" class="flexRowBetween">
+                    <view>特</view>
+                    <span class="span1"></span>
+                    <view>色</view>
+                    <span  class="span2"></span>
                     <view>精</view>
                     <span class="span1"></span>
                     <view>品</view>
-                    <span  class="span2"></span>
-                    <view>推</view>
-                    <span class="span1"></span>
-                    <view>荐</view>
                 </view>
             </view>
         </view>
     </view>
 </view>
 <view class="w710 index_product flexRowBetween bg1">
-  <block wx:for="{{web_foodData}}" wx:key="id">
-    <view class="recommend_left" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
-        <image src="{{item.mainImg[0].url}}"></image>
-        <view class="product_name font30 avoidOverflow">{{item.title}}</view>
-        <view class="product_pro font32 color">¥{{item.contactPhone}}</view>
-    </view>
-  </block>
+    <scroll-view class="recommend_scroll_x_box" scroll-x="true">
+      <block wx:for="{{web_foodData[0].mainImg}}" wx:key="id">
+        
+            <view class="recommend_hot_box" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+                <image class="recommend_hot_image" src="{{item.url}}"></image>
+              <!--   <view class="product_name font30 avoidOverflow">{{item.title}}</view>
+                <view class="product_pro font32 color">¥{{item.contactPhone}}</view> -->
+            </view>
+      </block> 
+    </scroll-view>
 </view>
 <view class="w710 bg1">
     <view class="big_title flexRowBetween">

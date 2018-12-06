@@ -326,3 +326,41 @@ swiper{
 	width:100%;
 	height:380rpx;
 }
+
+.recommend_scroll_x_box {
+  height: 400rpx;
+  white-space: nowrap;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.recommend_hot_box {
+  width: 300rpx;
+  height: 340rpx;
+  margin-right: 24rpx;
+  display: inline-block;
+}
+
+.recommend_hot_image {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius:10rpx;
+}
+
+.title {
+  font-size: 26rpx;
+}
+
+.desc {
+  font-size: 24rpx;
+}
+
+.title, .desc {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
