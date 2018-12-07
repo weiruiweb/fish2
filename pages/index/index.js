@@ -259,9 +259,12 @@ Page({
     const callback = (res)=>{
       if(res.solely_code==100000){
         if(res.info.data.length>0){
-          self.data.todayCouponData = res.info.data
+          self.data.todayCouponData = res.info.data;
+        }else{
+          self.data.todayCouponData = [];
         };
       };
+      
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'checkToday',self);
       self.setData({
         web_todayCouponData:self.data.todayCouponData
@@ -275,6 +278,7 @@ Page({
   addCouponOrder(e){
     const self = this;
     api.buttonCanClick(self);
+    console.log('addCouponOrder',self.data.todayCouponData)
     if(self.data.todayCouponData.length>0){
       api.showToast('每个用户每天限领取一张','none');
       api.buttonCanClick(self,true)

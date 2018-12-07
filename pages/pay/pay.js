@@ -92,18 +92,23 @@ Page({
     postData.data = {
       price:self.data.count + parseFloat(self.data.submitData.price)
     };
-    if(self.data.choosedCouponData.length>0){
+    if(self.data.choosedCouponData.length>0&&self.data.submitData.price){
       postData.pay = {
         wxPay:self.data.submitData.price,
         wxPayStatus:0,
         coupon:self.data.choosedCouponData
       };
-    }else{
+    }else if(self.data.submitData.price){
       postData.pay = {
         wxPay:self.data.submitData.price,
         wxPayStatus:0,
       };
+    }else if(self.data.choosedCouponData.length>0){
+      postData.pay = {
+        coupon:self.data.choosedCouponData
+      };
     };
+
     
     
     const callback = (res)=>{
@@ -119,12 +124,19 @@ Page({
               }else{
                 api.showToast('调起微信支付失败','none');
               };
+              self.data.mainData = [];
+              self.getMainData();
             };
             api.realPay(res.info,payCallback);    
-          
+        }else{
+          api.showToast('支付成功','none',function(){
+            api.pathTo('/pages/index/index','redi')  
+          });
         };
       }else{
-        api.showToast('支付失败','none')
+        api.showToast('支付失败','none');
+        self.data.mainData = [];
+        self.getMainData();
       } 
       api.buttonCanClick(self,true) 
     }

@@ -166,17 +166,6 @@
     </scroll-view>
 </view>
 <view class="w710 bg1">
-    <view class="big_title flexRowBetween">
-        <view class="tlt_left flex">
-            <image src="/images/line.jpg"></image>
-        </view>
-        <view class="tlt_center font28 color3" bindtap="getMoreData">点击加载更多</view>
-        <view class="tlt_left flex">
-            <image src="/images/line.jpg"></image>
-        </view>
-    </view>
-</view>
-<view class="w710 bg1">
     <view class="volume w710 flex bg1">
         <view class="mall_tlt">
             <image src="/images/tlt1.png"></image>
