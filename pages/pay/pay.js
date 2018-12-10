@@ -29,6 +29,8 @@ Page({
       web_choosedCouponData:self.data.choosedCouponData
     })
   },
+
+
   getMainData(){
     const self = this;
     const postData = {
@@ -94,7 +96,7 @@ Page({
     };
     if(self.data.choosedCouponData.length>0&&self.data.submitData.price){
       postData.pay = {
-        wxPay:self.data.submitData.price,
+        wxPay:self.data.submitData.price-self.data.count,
         wxPayStatus:0,
         coupon:self.data.choosedCouponData
       };
