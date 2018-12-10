@@ -32,6 +32,7 @@
       </view>
     </block>
 </view>
+微信支付合计:{{web_wxPay>0?web_wxPay:0}}
 <form  bindsubmit="{{web_buttonCanClick?'pay':''}}" style="margin-bottom:50rpx;">
     <button class="submit_info" form-type="submit">立即支付</button>
 </form>

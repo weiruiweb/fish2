@@ -10,7 +10,7 @@ Page({
     couponData:[],
     choosedCouponData:[],
     submitData:{
-      price:''
+      price:0
     },
     isFirstLoadAllStandard:['getMainData'],
     isLoadAll:false,
@@ -26,7 +26,8 @@ Page({
     wx.removeStorageSync('checkLoadAll');
     self.getMainData();
     self.setData({
-      web_choosedCouponData:self.data.choosedCouponData
+      web_choosedCouponData:self.data.choosedCouponData,
+      web_wxPay:self.data.count?self.data.submitData.price - self.data.count:self.data.submitData.price
     })
   },
 
@@ -46,7 +47,9 @@ Page({
       }
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
-        web_mainData:self.data.mainData
+        web_mainData:self.data.mainData,
+        web_submitData:self.data.submitData,
+        web_wxPay:self.data.count?(self.data.submitData.price - self.data.count).toFixed(2):parseFloat(self.data.submitData.price).toFixed(2)
       })
     }
     api.orderGet(postData,callback)
@@ -58,8 +61,10 @@ Page({
     const self = this;
     api.fillChange(e,self,'submitData');
     console.log(self.data.submitData);
+
     self.setData({
       web_submitData:self.data.submitData,
+      web_wxPay:self.data.count?(self.data.submitData.price - self.data.count).toFixed(2):parseFloat(self.data.submitData.price).toFixed(2)
     });  
   },
 
@@ -78,7 +83,8 @@ Page({
       self.data.choosedCouponData.push({id:id,price:count});
     };
     self.setData({
-      web_choosedCouponData:self.data.choosedCouponData
+      web_choosedCouponData:self.data.choosedCouponData,
+      web_wxPay:self.data.count?(self.data.submitData.price - self.data.count).toFixed(2):parseFloat(self.data.submitData.price).toFixed(2)
     })
     console.log('self.data.count',self.data.count);
     console.log('self.data.choosedCouponData',self.data.choosedCouponData);
@@ -111,8 +117,15 @@ Page({
       };
     };
 
+    if(postData.pay.wxPay&&postData.pay.wxPay<=0){
+    	delete postData.pay.wxPay;
+    	delete postData.pay.wxPayStatus;
+    }else if(postData.pay.wxPay){
+    	postData.pay.wxPay = parseFloat(postData.pay.wxPay).toFixed(2);
+    };
+
     
-    
+
     const callback = (res)=>{
       console.log(res)
       if(res.solely_code==100000){
@@ -127,6 +140,7 @@ Page({
                 api.showToast('调起微信支付失败','none');
               };
               self.data.mainData = [];
+              self.data.submitData.price = 0;
               self.getMainData();
             };
             api.realPay(res.info,payCallback);    
@@ -138,8 +152,9 @@ Page({
       }else{
         api.showToast('支付失败','none');
         self.data.mainData = [];
+        self.data.submitData.price = 0;
         self.getMainData();
-      } 
+      }; 
       api.buttonCanClick(self,true) 
     }
     api.addVirtualOrder(postData,callback);
