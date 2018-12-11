@@ -15,7 +15,7 @@
                       <view class="discount_sort font22 color1">{{item.products[0].snap_product.title}}</view>
                   </view>
                   <view class="discount_center font28">
-                    <view class="color">¥<text style="margin-right:10rpx;">{{item.discount}}</text>{{item.products[0].snap_product.description}}</view>
+                    <view class="color">¥<text style="margin-right:10rpx;">{{item.products[0].snap_product.discount}}</text>{{item.products[0].snap_product.description}}</view>
                     <view class="color6">{{item.products[0].snap_product.passage2}}</view>
                     <!-- <view class="color6">2018.9.20 -2018-9.22</view> -->
                   </view>
@@ -32,7 +32,7 @@
       </view>
     </block>
 </view>
-微信支付合计:{{web_wxPay>0?web_wxPay:0}}
+<view class="w710 color6 font32" style="text-align:center;margin-top:40rpx;">微信支付合计:<text class="font34 color" style="margin:0 10rpx;">{{web_wxPay>0?web_wxPay:0}}元</text></view>
 <form  bindsubmit="{{web_buttonCanClick?'pay':''}}" style="margin-bottom:50rpx;">
     <button class="submit_info" form-type="submit">立即支付</button>
 </form>

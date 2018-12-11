@@ -100,6 +100,7 @@ Page({
     postData.data = {
       price:self.data.count + parseFloat(self.data.submitData.price)
     };
+    postData.pay = {};
     if(self.data.choosedCouponData.length>0&&self.data.submitData.price){
       postData.pay = {
         wxPay:self.data.submitData.price-self.data.count,
@@ -117,13 +118,18 @@ Page({
       };
     };
 
-    if(postData.pay.wxPay&&postData.pay.wxPay<=0){
+    if(postData.pay&&postData.pay.wxPay&&postData.pay.wxPay<=0){
     	delete postData.pay.wxPay;
     	delete postData.pay.wxPayStatus;
     }else if(postData.pay.wxPay){
     	postData.pay.wxPay = parseFloat(postData.pay.wxPay).toFixed(2);
     };
 
+    if(JSON.stringify(postData.pay)=='{}'){
+      api.showToast('空白支付','error');
+      api.buttonCanClick(self,true)
+      return;
+    };
     
 
     const callback = (res)=>{
