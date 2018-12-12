@@ -43,14 +43,21 @@ Page({
     };
     const callback = (res) =>{
       if(res.info.data.length>0){
-        self.data.mainData.push.apply(self.data.mainData,res.info.data)
+        self.data.mainData.push.apply(self.data.mainData,res.info.data);
+        for (var i = 0; i < self.data.mainData.length; i++) {
+          self.data.choosedCouponData.push({id:self.data.mainData[i].id,price:self.data.mainData[i].discount});
+          self.data.count += self.data.mainData[i].discount;
+        }
+
       }
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
+        web_choosedCouponData:self.data.choosedCouponData,
         web_mainData:self.data.mainData,
         web_submitData:self.data.submitData,
         web_wxPay:self.data.count?(self.data.submitData.price - self.data.count).toFixed(2):parseFloat(self.data.submitData.price).toFixed(2)
-      })
+      });
+
     }
     api.orderGet(postData,callback)
 

@@ -45,8 +45,8 @@ Page({
       web_endTime:'',
     });
     self.getMainData(true);
-
   },
+  
   getUserInfoData(){
     const self = this;
     const postData = {};

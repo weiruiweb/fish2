@@ -56,6 +56,7 @@ Page({
       }
     })
   },
+  
   getSliderData(){
     const self = this;
     const postData = {};
