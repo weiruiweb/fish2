@@ -40,7 +40,6 @@ class Api extends Base{
     }
   
 
-
     labelGet(param,callback){
         var allParams ={
             url:'Common/Label/get',

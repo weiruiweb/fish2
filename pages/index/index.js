@@ -429,6 +429,8 @@ Page({
       }
   },
 
+
+
   mask:function(e){
     this.setData({
       is_show:false,
